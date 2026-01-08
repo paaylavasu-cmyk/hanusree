@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Best wishes for my  Special Person INDU❤️</title>
+    <title>Best wishes for my Special Person INDU❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.10.7/dist/index.umd.js"></script>
+
     <style>
         :root {
             --pink: #ff4d6d;
@@ -20,6 +23,22 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            /* Ensure body is relatively positioned for the fireworks container */
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* --- CSS FOR FIREWORKS CONTAINER --- */
+        #fireworks-bg {
+            position: fixed; /* Stays put even if you scroll */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Puts it BEHIND everything else */
+            pointer-events: none; /* Ensures clicks go through it to the elements below */
+            /* Added a subtle blur to make fireworks softer against the background */
+            filter: blur(1px);
         }
 
         /* --- 1. ENVELOPE --- */
@@ -30,6 +49,8 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            /* Added z-index to ensure it sits above fireworks */
+            z-index: 10;
         }
 
         .envelope {
@@ -72,6 +93,8 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            /* Added z-index */
+            z-index: 10;
         }
 
         .cake {
@@ -108,7 +131,9 @@
             padding: 40px 10px;
             width: 100%;
             max-width: 1100px;
-            text-align: center; /* Center the new button */
+            text-align: center;
+            /* Added z-index */
+            z-index: 10;
         }
 
         .gallery {
@@ -233,7 +258,9 @@
 </head>
 <body>
 
-    <!-- STEP 1: ENVELOPE -->
+    <div id="fireworks-bg"></div>
+
+
     <div id="stage-1" onclick="openLetter()">
         <div class="envelope">
             <div class="heart">❤️</div>
@@ -241,7 +268,6 @@
         <h2 style="color: var(--pink); margin-top: 30px;">ENTI CHUSTHUNAV LETTER OPEN CHAI BANDADHANA...❤️</h2>
     </div>
 
-    <!-- STEP 2: CAKE -->
     <div id="stage-2">
         <h1>Happy Birthday Chitti Thalli 🥂 ! 🎉</h1>
         <p>Make a wish and blow the candle!</p>
@@ -251,56 +277,47 @@
         <p style="color: #999; font-size: 0.9rem;">(Click the flame for more surprises nana )</p>
     </div>
 
-    <!-- STEP 3: 8 MOMENTS -->
     <div id="stage-3">
         <h1>Our Lovely Moments ❤️</h1>
         <div class="gallery" id="gallery">
             
-            <!-- Moment 1 -->
             <div class="polaroid" style="--r: -3deg;">
-               
+                <img src="https://i.ibb.co/TJwmDKS/1.jpg" alt="Moment 1">
                 <p>The Day i Met ✨</p>
             </div>
 
-            <!-- Moment 2 -->
             <div class="polaroid" style="--r: 2deg;">
-                
+                <img src="https://i.ibb.co/fYmPsvwt/2.jpg" alt="Moment 2">
                 <p>Our Late Nights 🌙</p>
             </div>
 
-            <!-- Moment 3 -->
             <div class="polaroid" style="--r: -2deg;">
-               
+                <img src="https://i.ibb.co/Xf9JWzSn/3.jpg" alt="Moment 3">
                 <p>“keep Shining, always.” 😊</p>
             </div>
 
-            <!-- Moment 4 -->
             <div class="polaroid" style="--r: 4deg;">
-                
+                <img src="https://i.ibb.co/HD4VR53L/4.jpg"  alt="Moment 4">
                 <p>“Forever, in every reach.” ✈️</p>
             </div>
 
-            <!-- Moment 5 -->
             <div class="polaroid" style="--r: -4deg;">
-                
+                <img src="https://i.ibb.co/5XkNVx1g/5.jpg" alt="Moment 5">
                 <p>Pure Happiness ❤️</p>
             </div>
 
-            <!-- Moment 6 -->
             <div class="polaroid" style="--r: 3deg;">
-                
+                <img src="https://i.ibb.co/k2pvfdJd/6.jpg" alt="Moment 6">
                 <p>“My hand will always search for yours.” 🫴🏻 </p>
             </div>
 
-            <!-- Moment 7 -->
             <div class="polaroid" style="--r: -1deg;">
-                
+                <img src="https://i.ibb.co/m5F5wkwh/7.jpg" alt="Moment 7">
                 <p>“Two souls, one moment.” 🫶 </p>
             </div>
 
-            <!-- Moment 8 -->
             <div class="polaroid" style="--r: 5deg;">
-                
+                <img src="https://i.ibb.co/zVFz4SRv/8.jpg" alt="Moment 8">
                 <p>To Many More... 🥂</p>
             </div>
 
@@ -308,7 +325,6 @@
 
         <h2 style="text-align:center; font-family: 'Dancing Script'; margin-top: 50px; color: var(--pink);">You are my favorite person! ❤️</h2>
 
-        <!-- --- NEW BUTTON SECTION --- -->
         <div class="message-container">
             <button class="msg-btn" id="msgBtn" onclick="revealMessage()">There is a special message for you inside 💌</button>
             
@@ -317,9 +333,10 @@
                 
                 <h2>My Dear Nana,</h2>
                 <p>
-                    Now you turned into "22" ✨🥂 I just wanted to take this moment to tell you how incredibly special you are to me🫂. 
-                    Looking back at these photos reminds me of how lucky I am to have you in my life😘.
-                    Thank you for being in my life nana once again wish you a very wonderful and joyful Happy Birthday Nana❤️🫂 .
+                    Now you’ve turned 22 ✨🥂
+                    I just wanted to take this moment to tell you how incredibly special you are to me 🫂.
+                    Looking back at these photos reminds me how lucky I am to have you in my life 😘.
+                    Thank you for being in my life, Nana. Once again, wishing you a very wonderful and joyful Happy Birthday Nana ❤️🫂.
                 </p>
                 <p>
                     This year bring you as much joy as you bring to everyone around you🫶!
@@ -327,18 +344,58 @@
                 <p style="text-align: right; font-weight: 600;">
                     With all my love,<br>ur's Nana
                 </p>
-                <!-- ✍️ END OF MESSAGE ✍️ -->
-
-            </div>
+                </div>
         </div>
 
     </div>
 
     <script>
+        // --- FIREWORKS INITIALIZATION WITH MATCHING STYLES ---
+        const fireworksContainer = document.getElementById('fireworks-bg');
+        const fireworks = new Fireworks.default(fireworksContainer, {
+            autoresize: true,
+            opacity: 0.3,       // Softer opacity
+            acceleration: 1.02,
+            friction: 0.97,
+            gravity: 1.5,
+            particles: 90,      // More particles for fuller bursts
+            traceLength: 3,
+            traceSpeed: 10,
+            explosion: 6,
+            intensity: 12,      // Slightly calmer frequency
+            flickering: 50,
+            lineStyle: 'round',
+            // IMPORTANT: Hue range set to pinks, reds, and warm golds
+            hue: {
+                min: 330, // Deep pink/magenta range
+                max: 45   // Warm gold/orange range
+            },
+            delay: {
+                min: 40, // Slower pace
+                max: 80
+            },
+            brightness: {
+                min: 70, // Brighter sparks against light bg
+                max: 100
+            },
+            decay: {
+                min: 0.015,
+                max: 0.03
+            },
+            mouse: {
+                click: false,
+                move: false,
+                max: 1
+            }
+        });
+        fireworks.start();
+        // ------------------------------------
+
+
         function openLetter() {
             document.getElementById('stage-1').style.display = 'none';
             document.getElementById('stage-2').style.display = 'flex';
-            confetti({ particleCount: 60, spread: 70 });
+            confetti({ particleCount: 60, spread: 70, colors: ['#ff4d6d', '#f4d03f', '#ffffff'] });
         }
 
         function blowCandle() {
@@ -347,7 +404,8 @@
             confetti({
                 particleCount: 200,
                 spread: 120,
-                origin: { y: 0.6 }
+                origin: { y: 0.6 },
+                colors: ['#ff4d6d', '#f4d03f', '#ffffff']
             });
 
             setTimeout(() => {
@@ -379,10 +437,10 @@
             confetti({
                 particleCount: 150,
                 spread: 100,
-                origin: { y: 0.8 }
+                origin: { y: 0.8 },
+                colors: ['#ff4d6d', '#f4d03f', '#ffffff']
             });
         }
     </script>
 </body>
 </html>
-
